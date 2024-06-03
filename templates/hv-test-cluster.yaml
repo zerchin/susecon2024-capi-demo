@@ -1,0 +1,603 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: example-rke2
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  labels:
+    ccm: external
+    cni: external
+    csi: external
+  name: test-rk
+  namespace: example-rke2
+spec:
+  controlPlaneRef:
+    apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
+    kind: RKE2ControlPlane
+    name: test-rk-control-plane
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: HarvesterCluster
+    name: test-rk-hv
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: HarvesterCluster
+metadata:
+  name: test-rk-hv
+  namespace: example-rke2
+spec:
+  identitySecret:
+    name: hv-identity-secret
+    namespace: example-rke2
+  loadBalancerConfig:
+    ipamType: pool
+    ipPoolRef: pool-1000
+    listeners:
+    - backendPort: 9345
+      name: rke2-server
+      port: 9345
+      protocol: TCP
+  server: https://145.40.94.55:6443
+  targetNamespace: default
+---
+apiVersion: v1
+data:
+  kubeconfig: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFZFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZNMDVFUVRWTmFrVjNUVUkwV0VSVVNUQk5SRmwzVFhwRmQwMUVXVEZOUm05WVJGUk5NRTFFV1hkTlZFVjNUVVJaTVFwTlJtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU1NlVYZFBWRWw0VFVSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTlkyOTBUM1JRZW5SQ2JXVkVVVUZqUzFSMVdUWkZibUl6VjJGelZqWXdSME5yU1d0NlJGZ0tPR2gxVjBKblRVUlRRbnByV1ZsVFduUjJkMFZQYzJwblF6QXZhRTlZV0RKUFkwbEpWR05SUzFOMFJWWlZTbTFxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVVdSUmREUktka3d2U1ZSRlZqVTRXR2hoQ25GRGQwdHBWR1V3VGtSQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtsQlJFSkdRV2xGUVdkNlUzVXlibFZLTUVSc09USnVkM2huWWpNNVJYaGxSamRSYm5jS05WUTRkR0Y1WVVWWWJrY3hTVEZuUTBsSE5VOXFjVFVyVmtWNWRtcDBVelJPTjFRMFRYWmhWVVppYzJ4MlRHaFZURGg0T1VKWU4wUjBkRGd5Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ3LjI4LjE4NS42MTo2NDQzCiAgbmFtZTogZGVmYXVsdApjb250ZXh0czoKLSBjb250ZXh0OgogICAgY2x1c3RlcjogZGVmYXVsdAogICAgdXNlcjogZGVmYXVsdAogIG5hbWU6IGRlZmF1bHQKY3VycmVudC1jb250ZXh0OiBkZWZhdWx0CmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogZGVmYXVsdAogIHVzZXI6CiAgICBjbGllbnQtY2VydGlmaWNhdGUtZGF0YTogTFMwdExTMUNSVWRKVGlCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2sxSlNVSnJha05EUVZScFowRjNTVUpCWjBsSlFsUnJRWFEwTTA5c1lYTjNRMmRaU1V0dldrbDZhakJGUVhkSmQwcEVSV2xOUTBGSFFURlZSVUYzZDFvS1kyMTBiRTFwTVdwaVIyeHNZbTVSZEZreVJrRk5WR040VG5wUmQwOVVTWGhOUkVGbFJuY3dlVTVFUVRKTlJFMTRUVVJCTWs1VVFtRkdkekI1VGxSQk1ncE5SRTE0VFVSQk1rNVVRbUZOUkVGNFJucEJWa0puVGxaQ1FXOVVSRzVPTldNelVteGlWSEIwV1ZoT01GcFlTbnBOVWxWM1JYZFpSRlpSVVVSRmQzaDZDbVZZVGpCYVZ6QTJXVmRTZEdGWE5IZFhWRUZVUW1kamNXaHJhazlRVVVsQ1FtZG5jV2hyYWs5UVVVMUNRbmRPUTBGQlVYSXlNVE5tVlVKd2FFTnJZMjhLTVVKWmNqTlRTRXB2VERodlQzcDFlbXRvY2taTVRUZEZSRWg0V21jMWNXRjRObHBGZUZsWWVEWnFhRXg0VHpkeFFqSkNXRTFqY1VOdVIxRTNXWE5HTXdwQ2JYaGhWemwwY204d1ozZFNha0ZQUW1kT1ZraFJPRUpCWmpoRlFrRk5RMEpoUVhkRmQxbEVWbEl3YkVKQmQzZERaMWxKUzNkWlFrSlJWVWhCZDBsM0NraDNXVVJXVWpCcVFrSm5kMFp2UVZWTlRUZEJRV1JoYVhFdmQwdzVaR2RUY1RaNFJrcEhjMFpqY21kM1EyZFpTVXR2V2tsNmFqQkZRWGRKUkZOQlFYY0tVbEZKWjBsa2NrRnNWR1pJWmtoWWFHMUdiblpCYjNWV1VscG1hQzh2VlRCdWMwY3JOa2xYUzBSRFZsbFROMEZEU1ZGRGEwdE5iVlJTU0RGamREVk5lZ3BJVkN0dlFXVjVhVkExU0ZkNlIyaDRaRkJWVVhkWVpDOHhVeXRoYUVFOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENpMHRMUzB0UWtWSFNVNGdRMFZTVkVsR1NVTkJWRVV0TFMwdExRcE5TVWxDWlZSRFEwRlNLMmRCZDBsQ1FXZEpRa0ZFUVV0Q1oyZHhhR3RxVDFCUlVVUkJha0ZyVFZOSmQwbEJXVVJXVVZGRVJFSnNlV0V5VlhsTVYwNXpDbUZYVm5Wa1F6RnFXVlZCZUU1NlJUTk9SRUUxVFdwRmQwMUNORmhFVkVrd1RVUlpkMDE2UlhkTlJGa3hUVVp2V0VSVVRUQk5SRmwzVFZSRmQwMUVXVEVLVFVadmQwcEVSV2xOUTBGSFFURlZSVUYzZDFwamJYUnNUV2t4YW1KSGJHeGlibEYwV1RKR1FVMVVZM2hPZWxGM1QxUkplRTFFUWxwTlFrMUhRbmx4UndwVFRUUTVRV2RGUjBORGNVZFRUVFE1UVhkRlNFRXdTVUZDUVZkd2VsVkZRa1pITm0xSFdtSnVSRkp1Wlc5eVpsSjBVRkk0Y1ZaRVprNHhWMXBsUTNsdkNqRnlWM1JqWkZWRU9XcDFhMkowVVdOUksxUnNSa3hDTTJsT2F6QTRkVFJsT1dWS01rNUdWRTlEVVRFMU9WbzJhbEZxUWtGTlFUUkhRVEZWWkVSM1JVSUtMM2RSUlVGM1NVTndSRUZRUW1kT1ZraFNUVUpCWmpoRlFsUkJSRUZSU0M5TlFqQkhRVEZWWkVSblVWZENRbEYzZW5OQlFqRnhTM0l2UVhZeE1rSkxjZ3B5UlZWcllYZFdlWFZFUVV0Q1oyZHhhR3RxVDFCUlVVUkJaMDVKUVVSQ1JrRnBSVUZzVW5kQ09ETmpiV1pZTVRGVGMzRkxialZOVjBSeVRURlBiVU12Q21wTlRUbHNjVkJWUzFvdkszZERUVU5KUVVSWFFYZFRiMGhqU0ZFM05VcFVWbGhMU0Roekt6RTFiekUwUkdaa1RHdHJaa2xZYjJNeGJqaFZkZ290TFMwdExVVk9SQ0JEUlZKVVNVWkpRMEZVUlMwdExTMHRDZz09CiAgICBjbGllbnQta2V5LWRhdGE6IExTMHRMUzFDUlVkSlRpQkZReUJRVWtsV1FWUkZJRXRGV1MwdExTMHRDazFJWTBOQlVVVkZTVVZaYW5RMFdEUndkRlV4TWtGTFpHaE1aMmwyWldwbFExY3hRbWhFTkZkc1ltZGxkVmhXWVVOQ1ZsUnZRVzlIUTBOeFIxTk5ORGtLUVhkRlNHOVZVVVJSWjBGRlN6bDBaRE14UVdGWlVYQklTMDVSVjBzNU1HaDVZVU12UzBSek4zTTFTV0Y0VTNwUGVFRjRPRmRaVDJGdGMyVnRVazFYUmdvNFpXODBVemhVZFRablpHZFdla2hMWjNCNGEwOHlURUprZDFwelYyeDJZbUYzUFQwS0xTMHRMUzFGVGtRZ1JVTWdVRkpKVmtGVVJTQkxSVmt0TFMwdExRbz0K
+kind: Secret
+metadata:
+  name: hv-identity-secret
+  namespace: example-rke2
+---
+apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
+kind: RKE2ControlPlane
+metadata:
+  name: test-rk-control-plane
+  namespace: example-rke2
+spec:
+  agentConfig:
+    version: v1.26.6+rke2r1
+  infrastructureRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: HarvesterMachineTemplate
+    name: test-rk-cp-machine
+    namespace: example-rke2
+  replicas: 3
+  serverConfig:
+    cloudProviderName: external
+    cni: calico
+---
+apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
+kind: RKE2ConfigTemplate
+metadata:
+  name: test-rk-worker
+  namespace: example-rke2
+spec:
+  template:
+    spec:
+      agentConfig:
+        version: v1.26.6+rke2r1
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: MachineDeployment
+metadata:
+  name: test-rk-workers
+  namespace: example-rke2
+spec:
+  clusterName: test-rk
+  replicas: 2
+  selector:
+    matchLabels:
+      cluster.x-k8s.io/cluster-name: test-rk
+  template:
+    spec:
+      bootstrap:
+        configRef:
+          apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
+          kind: RKE2ConfigTemplate
+          name: test-rk-worker
+          namespace: example-rke2
+      clusterName: test-rk
+      infrastructureRef:
+        apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+        kind: HarvesterMachineTemplate
+        name: test-rk-wk-machine
+        namespace: example-rke2
+      version: v1.26.6
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: HarvesterMachineTemplate
+metadata:
+  name: test-rk-wk-machine
+  namespace: example-rke2
+spec:
+  template:
+    spec:
+      cpu: 1
+      memory: 4Gi
+      networks:
+      - harvester-public/vlan-1000
+      sshKeyPair: macos
+      sshUser: ubuntu
+      volumes:
+      - bootOrder: 0
+        imageName: default/jammy-server-cloudimg-amd64.img
+        volumeSize: 50Gi
+        volumeType: image
+---
+apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+kind: HarvesterMachineTemplate
+metadata:
+  name: test-rk-cp-machine
+  namespace: example-rke2
+spec:
+  template:
+    spec:
+      cpu: 2
+      memory: 8Gi
+      networks:
+      - harvester-public/vlan-1000
+      sshKeyPair: macos
+      sshUser: ubuntu
+      volumes:
+      - bootOrder: 0
+        imageName: default/jammy-server-cloudimg-amd64.img
+        volumeSize: 50Gi
+        volumeType: image
+---
+apiVersion: addons.cluster.x-k8s.io/v1beta1
+kind: ClusterResourceSet
+metadata:
+  name: crs-harvester-ccm
+  namespace: example-rke2
+spec:
+  clusterSelector:
+    matchLabels:
+      ccm: external
+  resources:
+  - kind: ConfigMap
+    name: cloud-controller-manager-addon
+  strategy: ApplyOnce
+---
+apiVersion: addons.cluster.x-k8s.io/v1beta1
+kind: ClusterResourceSet
+metadata:
+  name: crs-harvester-csi
+  namespace: example-rke2
+spec:
+  clusterSelector:
+    matchLabels:
+      csi: external
+  resources:
+  - kind: ConfigMap
+    name: harvester-csi-driver-addon
+  strategy: ApplyOnce
+---
+apiVersion: addons.cluster.x-k8s.io/v1beta1
+kind: ClusterResourceSet
+metadata:
+  name: crs-calico-chart-config
+  namespace: example-rke2
+spec:
+  clusterSelector:
+    matchLabels:
+      cni: external
+  resources:
+  - kind: ConfigMap
+    name: calico-helm-config
+  strategy: ApplyOnce
+---
+apiVersion: v1
+data:
+  harvester-csi-deployment.yaml: |
+    apiVersion: apps/v1
+    kind: DaemonSet
+    metadata:
+      name: harvester-csi-plugin
+      namespace: kube-system
+    spec:
+      selector:
+        matchLabels:
+          app: harvester-csi-plugin
+      template:
+        metadata:
+          labels:
+            app: harvester-csi-plugin
+        spec:
+          containers:
+            - args:
+                - --v=5
+                - --csi-address=$(ADDRESS)
+                - --kubelet-registration-path=/var/lib/kubelet/harvester-plugins/driver.harvesterhci.io/csi.sock
+              env:
+                - name: ADDRESS
+                  value: /csi/csi.sock
+              image: longhornio/csi-node-driver-registrar:v1.2.0-lh1
+              lifecycle:
+                preStop:
+                  exec:
+                    command:
+                      - /bin/sh
+                      - -c
+                      - rm -rf /registration/driver.harvesterhci.io-reg.sock
+                        /csi//*
+              name: node-driver-registrar
+              securityContext:
+                privileged: true
+              volumeMounts:
+                - mountPath: /csi/
+                  name: socket-dir
+                - mountPath: /registration
+                  name: registration-dir
+            - args:
+                - --nodeid=$(NODE_ID)
+                - --endpoint=$(CSI_ENDPOINT)
+                - --kubeconfig=/etc/csi/cloud-config
+              env:
+                - name: NODE_ID
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: spec.nodeName
+                - name: CSI_ENDPOINT
+                  value: unix:///csi/csi.sock
+              image: rancher/harvester-csi-driver:v0.1.6
+              imagePullPolicy: Always
+              lifecycle:
+                preStop:
+                  exec:
+                    command:
+                      - /bin/sh
+                      - -c
+                      - rm -f /csi//*
+              name: harvester-csi-plugin
+              securityContext:
+                allowPrivilegeEscalation: true
+                capabilities:
+                  add:
+                    - SYS_ADMIN
+                privileged: true
+              volumeMounts:
+                - name: cloud-config
+                  mountPath: "/etc/csi"
+                  readOnly: true
+                - mountPath: /var/lib/kubelet/plugins/kubernetes.io/csi
+                  mountPropagation: Bidirectional
+                  name: kubernetes-csi-dir
+                - mountPath: /csi/
+                  name: socket-dir
+                - mountPath: /var/lib/kubelet/pods
+                  mountPropagation: Bidirectional
+                  name: pods-mount-dir
+                - mountPath: /dev
+                  name: host-dev
+                - mountPath: /sys
+                  name: host-sys
+                - mountPath: /rootfs
+                  mountPropagation: Bidirectional
+                  name: host
+                - mountPath: /lib/modules
+                  name: lib-modules
+                  readOnly: true
+          hostPID: true
+          serviceAccountName: harvester-csi
+          tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+              operator: Exists
+            - effect: NoSchedule
+              key: kubevirt.io/drain
+              operator: Exists
+          volumes:
+            - name: cloud-config
+              secret:
+                secretName: cloud-config
+            - hostPath:
+                path: /var/lib/kubelet/plugins/kubernetes.io/csi
+                type: DirectoryOrCreate
+              name: kubernetes-csi-dir
+            - hostPath:
+                path: /var/lib/kubelet/plugins_registry
+                type: Directory
+              name: registration-dir
+            - hostPath:
+                path: /var/lib/kubelet/harvester-plugins/driver.harvesterhci.io
+                type: DirectoryOrCreate
+              name: socket-dir
+            - hostPath:
+                path: /var/lib/kubelet/pods
+                type: DirectoryOrCreate
+              name: pods-mount-dir
+            - hostPath:
+                path: /dev
+              name: host-dev
+            - hostPath:
+                path: /sys
+              name: host-sys
+            - hostPath:
+                path: /
+              name: host
+            - hostPath:
+                path: /lib/modules
+              name: lib-modules
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: harvester-csi
+      namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: harvester-csi
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin
+    subjects:
+      - kind: ServiceAccount
+        name: harvester-csi
+        namespace: kube-system
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: csi-controller
+      namespace: kube-system
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: csi-controller
+      template:
+        metadata:
+          labels:
+            app: csi-controller
+        spec:
+          containers:
+            - args:
+                - --v=5
+                - --csi-address=$(ADDRESS)
+                - --csiTimeout=2m5s
+                - --leader-election
+                - --leader-election-namespace=$(POD_NAMESPACE)
+              env:
+                - name: ADDRESS
+                  value: /csi/csi.sock
+                - name: POD_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+              image: longhornio/csi-resizer:v0.5.1-lh1
+              name: csi-resizer
+              volumeMounts:
+                - mountPath: /csi/
+                  name: socket-dir
+            - args:
+                - --v=5
+                - --csi-address=$(ADDRESS)
+                - --timeout=2m5s
+                - --enable-leader-election
+                - --leader-election-type=leases
+                - --leader-election-namespace=$(POD_NAMESPACE)
+              env:
+                - name: ADDRESS
+                  value: /csi/csi.sock
+                - name: POD_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+              image: longhornio/csi-provisioner:v1.6.0-lh1
+              name: csi-provisioner
+              volumeMounts:
+                - mountPath: /csi/
+                  name: socket-dir
+            - args:
+                - --v=5
+                - --csi-address=$(ADDRESS)
+                - --timeout=2m5s
+                - --leader-election
+                - --leader-election-namespace=$(POD_NAMESPACE)
+              env:
+                - name: ADDRESS
+                  value: /csi/csi.sock
+                - name: POD_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      apiVersion: v1
+                      fieldPath: metadata.namespace
+              image: longhornio/csi-attacher:v2.2.1-lh1
+              name: csi-attacher
+              volumeMounts:
+                - mountPath: /csi/
+                  name: socket-dir
+          serviceAccountName: harvester-csi
+          tolerations:
+            - effect: NoSchedule
+              key: node-role.kubernetes.io/control-plane
+              operator: Exists
+            - effect: NoSchedule
+              key: kubevirt.io/drain
+              operator: Exists
+          volumes:
+            - hostPath:
+                path: /var/lib/kubelet/harvester-plugins/driver.harvesterhci.io
+                type: DirectoryOrCreate
+              name: socket-dir
+    ---
+    apiVersion: storage.k8s.io/v1
+    kind: CSIDriver
+    metadata:
+      name: driver.harvesterhci.io
+    spec:
+      attachRequired: true
+      fsGroupPolicy: ReadWriteOnceWithFSType
+      podInfoOnMount: true
+      volumeLifecycleModes:
+        - Persistent
+    ---
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: harvester
+    allowVolumeExpansion: true
+    provisioner: driver.harvesterhci.io
+    reclaimPolicy: Delete
+    volumeBindingMode: Immediate
+kind: ConfigMap
+metadata:
+  name: cloud-controller-manager-addon
+  namespace: example-rke2
+---
+apiVersion: v1
+data:
+  harvester-cloud-provider-deploy.yaml: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/component: cloud-provider
+        app.kubernetes.io/name: harvester-cloud-provider
+      name: harvester-cloud-provider
+      namespace: kube-system
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app.kubernetes.io/component: cloud-provider
+          app.kubernetes.io/name: harvester-cloud-provider
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: cloud-provider
+            app.kubernetes.io/name: harvester-cloud-provider
+        spec:
+          containers:
+          - args:
+            - --cloud-config=/etc/kubernetes/cloud-config
+            command:
+            - harvester-cloud-provider
+            image: rancher/harvester-cloud-provider:v0.2.0
+            imagePullPolicy: Always
+            name: harvester-cloud-provider
+            resources: {}
+            volumeMounts:
+            - mountPath: /etc/kubernetes
+              name: cloud-config
+          serviceAccountName: harvester-cloud-controller-manager
+          tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/control-plane
+            operator: Exists
+          - effect: NoSchedule
+            key: node.cloudprovider.kubernetes.io/uninitialized
+            operator: Equal
+            value: "true"
+          volumes:
+            - name: cloud-config
+              secret:
+                secretName: cloud-config
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: harvester-cloud-controller-manager
+      namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: harvester-cloud-controller-manager
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - services
+      - nodes
+      - events
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+    - apiGroups:
+      - ""
+      resources:
+      - services/status
+      verbs:
+      - update
+      - patch
+    - apiGroups:
+      - ""
+      resources:
+      - nodes/status
+      verbs:
+      - patch
+      - update
+    - apiGroups:
+      - coordination.k8s.io
+      resources:
+      - leases
+      verbs:
+      - get
+      - create
+      - update
+    ---
+    kind: ClusterRoleBinding
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: harvester-cloud-controller-manager
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: harvester-cloud-controller-manager
+    subjects:
+      - kind: ServiceAccount
+        name: harvester-cloud-controller-manager
+        namespace: kube-system
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: cloud-config
+      namespace: kube-system
+    type: Opaque
+    data:
+      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRtcGpNRTFFVVhoTmVsa3pUVUkwV0VSVVNYcE5SRVY0VDBSRmVFMXFhM2xPTVc5WVJGUk5lazFFUlhoT1ZFVjRUV3ByZVFwT01XOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJaTTA1RVFUQk5WRTB5VG5wQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTlVWUlJSM0pEZDB4clIwUjJUMWg1VDFaamJtaFpSMHN6V0d4TlNUUkVOVGREU21OWWRuUUtjMDU2Tm1OSFZsTTBTbVYxV1RNeldrMDNkM0pUUjNkT01tcHhaMmh6ZW5sa1puUm5Ua0pxWjJkUU5HRmFTMWRxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVkhWWE0wSkpkR1E0T0hVMk0zQlNiRU5TQ25sbFJXRlZZbTV5WlZSQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhJeE0xQmthVlJ2Y0habVYyRjRjVEJpVW10ME1TdEhWVEl2VkVNS1ZsRkpWbXczT1dkWlIwMVdNV00wUTBsUlEzQXpiRFl2UkhWNlN5dFNkVWM1TVhKek5EVnpSMWh5TXpGS1Mwa3dTbE56YjBvNFZrVklNRU5RUTJjOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIHNlcnZlcjogaHR0cHM6Ly8xOTIuMTY4LjEuMTYxOjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICBuYW1lc3BhY2U6IGRlZmF1bHQKICAgIHVzZXI6IGNsb3VkLXByb3ZpZGVyLWRlZmF1bHQtZGVmYXVsdAogIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRlZmF1bHQtZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGNsb3VkLXByb3ZpZGVyLWRlZmF1bHQtZGVmYXVsdApraW5kOiBDb25maWcKcHJlZmVyZW5jZXM6IHt9CnVzZXJzOgotIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRlZmF1bHQtZGVmYXVsdAogIHVzZXI6CiAgICB0b2tlbjogZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrWk5hVGhHZVRGZk5FRXdZMjlqVEVKaVYxQlBabGgyYkZVeGNXbERaRWxXVVZGcGFteDJjRGM0YkZVaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbU5zYjNWa0xYQnliM1pwWkdWeUxYUnZhMlZ1SWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWJtRnRaU0k2SW1Oc2IzVmtMWEJ5YjNacFpHVnlJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1ZFdsa0lqb2lOV1k1TkdZMU1HUXRZbUUxT1MwME9XUmlMV0kyTURJdE9EazJPRFExT1RkaFlURTFJaXdpYzNWaUlqb2ljM2x6ZEdWdE9uTmxjblpwWTJWaFkyTnZkVzUwT21SbFptRjFiSFE2WTJ4dmRXUXRjSEp2ZG1sa1pYSWlmUS5KTXV2VklsMGNrQ0pNd1pTeXpoOWZ4eUVtREJYUDJVeTZPTnhpZF9yXzUyYWFtT3RXRVhMWVFFdzRLa1lDXzVZdzA2aXpQUVlsbXNGWTNBd3ZxOFd5cEg5Wk1WWkp5dFo1VUY2Q0lzak01SHFpYlRBV0ZmTllrcXNxOEo0UDM5TzlDMkRMMjZYTWxXamNVT3N1amlfbnJkZmlWRkpSNm5OUC1rS3dGQWk2UVo5ZUFTT2JxSEI2VXZHRFVHUjU4SXF3ek9rNnpoUk1TYVo0U2F6QlQ3b3o0TUMzUnIxTWF1S21iSHFQenNEUV90dUhlVWFZTjl1bHVSbTRhV0d4bGVmTVMxSlplMHFSbDdSdWFNU2FxaF9qLWhQT2VITUdaQnk4OEFUTm9jU0JPamxLaWFnbW1XQWJFc1hCdGVDSEtubzFMX04xd0tYS1BPemc2d0RIYWpwZVEK
+kind: ConfigMap
+metadata:
+  name: harvester-csi-driver-addon
+  namespace: example-rke2
+---
+apiVersion: v1
+data:
+  calico-helm-config.yaml: |
+    apiVersion: helm.cattle.io/v1
+    kind: HelmChartConfig
+    metadata:
+      name: rke2-calico
+      namespace: kube-system
+    spec:
+      valuesContent: |-
+        installation:
+          controlPlaneTolerations:
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: Exists
+              effect: NoSchedule
+            - key: "node-role.kubernetes.io/etcd"
+              operator: Exists
+              effect: NoExecute
+            - key: "node.cloudprovider.kubernetes.io/uninitialized"
+              operator: Equal
+              value: "true"
+              effect: NoSchedule
+kind: ConfigMap
+metadata:
+  name: calico-helm-config
+  namespace: example-rke2
