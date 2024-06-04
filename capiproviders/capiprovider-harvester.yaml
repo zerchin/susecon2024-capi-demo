@@ -15,5 +15,5 @@ spec:
   name: harvester
   type: infrastructure
   fetchConfig:
-    url: https://github.com/rancher-sandbox/cluster-api-provider-harvester/releases/latest/components.yaml
+    url: https://github.com/rancher-sandbox/cluster-api-provider-harvester/releases/download/v0.1.2/components.yaml
   version: v0.1.2
