@@ -32,8 +32,7 @@ spec:
     name: hv-identity-secret
     namespace: example-rke2
   loadBalancerConfig:
-    ipamType: pool
-    ipPoolRef: pool-1000
+    ipamType: dhcp
     listeners:
     - backendPort: 9345
       name: rke2-server
@@ -117,7 +116,7 @@ spec:
       cpu: 1
       memory: 4Gi
       networks:
-      - harvester-public/vlan-1000
+      - default/untagged
       sshKeyPair: macos
       sshUser: ubuntu
       volumes:
@@ -137,7 +136,7 @@ spec:
       cpu: 2
       memory: 8Gi
       networks:
-      - harvester-public/vlan-1000
+      - default/untagged
       sshKeyPair: macos
       sshUser: ubuntu
       volumes:
