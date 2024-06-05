@@ -12,6 +12,7 @@ metadata:
     ccm: external
     cni: external
     csi: external
+    cluster-api.cattle.io/rancher-auto-import: true
   name: test-rk
   namespace: example-rke2
 spec:
