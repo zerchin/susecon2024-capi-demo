@@ -32,7 +32,8 @@ spec:
     name: hv-identity-secret
     namespace: example-rke2
   loadBalancerConfig:
-    ipamType: dhcp
+    ipamType: pool
+    ipPoolRef: pool-1
     listeners:
     - backendPort: 9345
       name: rke2-server
