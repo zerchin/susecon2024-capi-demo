@@ -8,6 +8,7 @@ kind: Cluster
 metadata:
   labels:
     ccm: external
+    cluster-api.cattle.io/rancher-auto-import: true
     cni: external
     csi: external
   name: test-rk
@@ -32,8 +33,7 @@ spec:
     name: hv-identity-secret
     namespace: example-rke2
   loadBalancerConfig:
-    ipamType: pool
-    ipPoolRef: pool-1
+    ipamType: dhcp
     listeners:
     - backendPort: 9345
       name: rke2-server
