@@ -8,7 +8,7 @@ kind: Cluster
 metadata:
   labels:
     ccm: external
-    cluster-api.cattle.io/rancher-auto-import: true
+    cluster-api.cattle.io/rancher-auto-import: "true"
     cni: external
     csi: external
   name: test-rk
