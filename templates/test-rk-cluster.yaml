@@ -40,12 +40,12 @@ spec:
       name: rke2-server
       port: 9345
       protocol: TCP
-  server: https://145.40.93.207:6443
+  server: https://145.40.94.89:6443
   targetNamespace: default
 ---
 apiVersion: v1
 data:
-  kubeconfig: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZORTU2YXpOUFJHc3dUVUkwV0VSVVNUQk5SRmw0VDFSRmVFNVVSWHBPUm05WVJGUk5NRTFFV1hoT2VrVjRUbFJGZWdwT1JtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU5RVl6Vk9lbWMxVGtSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKRmFsbHNlVTlCT1ZCRlpYcFhOMHB3Yld3eVZHWkdlbTE1UjJ0eVMwZ3hia3hUY2t4U2JHNEtNa05zZUZablUxbEJWakowUWprdldrODBhRGxGWW5oVmFtMTRkWGQxYW5jNFZEQndiVWRpU1hwQldIaFVRVFpxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVWsxT1JuUlpPWEp2Vm1kWFdIcGtOUzgxQ205S1UzRkhaMDVWU25wQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhrd2RERlVTMVZaU2tjMkx6UkdaR1U0TlZGblVWazBNVVV5YXpZS1ZGTnlRbmhUTXpKT1NFRlRURTVyUTBsUlEyNVFaa2RTYmtkTldXRTBUM2xsYVRJMFpVZHRMMGhvTm1wWk4zWmhPVkEzZERKd2RGRlVURGRrUW1jOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIHNlcnZlcjogaHR0cHM6Ly8xNDUuNDAuOTMuMjA3OjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICB1c2VyOiBkZWZhdWx0CiAgbmFtZTogZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBkZWZhdWx0CiAgdXNlcjoKICAgIGNsaWVudC1jZXJ0aWZpY2F0ZS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKcmVrTkRRVlJwWjBGM1NVSkJaMGxKV0N0SGJuZDNSblpQUzBGM1EyZFpTVXR2V2tsNmFqQkZRWGRKZDBwRVJXbE5RMEZIUVRGVlJVRjNkMW9LWTIxMGJFMXBNV3BpUjJ4c1ltNVJkRmt5UmtGTlZHTjRUMFJqTlU1Nlp6Vk9SRUZsUm5jd2VVNUVRVEpOVkd0NFRWUlZlRTE2VW1GR2R6QjVUbFJCTWdwTlZHdDRUVlJWZUUxNlVtRk5SRUY0Um5wQlZrSm5UbFpDUVc5VVJHNU9OV016VW14aVZIQjBXVmhPTUZwWVNucE5VbFYzUlhkWlJGWlJVVVJGZDNoNkNtVllUakJhVnpBMldWZFNkR0ZYTkhkWFZFRlVRbWRqY1docmFrOVFVVWxDUW1kbmNXaHJhazlRVVUxQ1FuZE9RMEZCVW5oeFlucFJNaXRFYzJoQloxTUtiRk5xTmtaSVRHVmlkVVE1WkZGSlJFbHlSREJtZGxsaGIxWkxNREZIU0N0cU5tTjJVU3N2WWtaTGFVTkdZMkZ0T1hBeFlrTjFZV3hUZGtoSU1VUllUZ3BwU2k5eWJrNXBjRzh3WjNkU2FrRlBRbWRPVmtoUk9FSkJaamhGUWtGTlEwSmhRWGRGZDFsRVZsSXdiRUpCZDNkRFoxbEpTM2RaUWtKUlZVaEJkMGwzQ2toM1dVUldVakJxUWtKbmQwWnZRVlZpYTBNMFRrdFRkMGMxUWt3eE1VUlFOalV6V1hKUE1uUTViVmwzUTJkWlNVdHZXa2w2YWpCRlFYZEpSRk5SUVhjS1VtZEphRUZQYXpkdU9ETm1SbTVKUkRGM2JGQlVRVVl5VTBsM09EWjZiMjVpVFdKc01sSkdXV1o1VVRKWlpUWlRRV2xGUVd4a0szQndlbmhDWkU1Vk5BcDBTV3RoVldaSVkzbHJTbnB1YkRneUt6bHZURFprUTFSS1drMTVVekpCUFFvdExTMHRMVVZPUkNCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2kwdExTMHRRa1ZIU1U0Z1EwVlNWRWxHU1VOQlZFVXRMUzB0TFFwTlNVbENaVlJEUTBGU0syZEJkMGxDUVdkSlFrRkVRVXRDWjJkeGFHdHFUMUJSVVVSQmFrRnJUVk5KZDBsQldVUldVVkZFUkVKc2VXRXlWWGxNVjA1ekNtRlhWblZrUXpGcVdWVkJlRTU2UlRST2Vtc3pUMFJyTUUxQ05GaEVWRWt3VFVSWmVFOVVSWGhPVkVWNlRrWnZXRVJVVFRCTlJGbDRUbnBGZUU1VVJYb0tUa1p2ZDBwRVJXbE5RMEZIUVRGVlJVRjNkMXBqYlhSc1RXa3hhbUpIYkd4aWJsRjBXVEpHUVUxVVkzaFBSR00xVG5wbk5VNUVRbHBOUWsxSFFubHhSd3BUVFRRNVFXZEZSME5EY1VkVFRUUTVRWGRGU0VFd1NVRkNRa296ZHpWQlRYUjBWVWR0YTBaQloyMXNiV0ZPYTNvNGJUbGxNMko2TTFwYU0zRTVkR1ZHQ2pWVFEweHliWGREYUdwd1Z6ZFNibFJ2VjBKSE1sWkdSMHRwUkROTmFFVnRRVFkzZWs5VlJqSlJNa1pOWTJNcmFsRnFRa0ZOUVRSSFFURlZaRVIzUlVJS0wzZFJSVUYzU1VOd1JFRlFRbWRPVmtoU1RVSkJaamhGUWxSQlJFRlJTQzlOUWpCSFFURlZaRVJuVVZkQ1FsSjFVVXhuTUhCTVFXSnJSWFpZVlUwdmNncHVaR2x6TjJFek1scHFRVXRDWjJkeGFHdHFUMUJSVVVSQlowNUpRVVJDUmtGcFFsWjJkM0pOWm5wUk5qbDVhRlF2ZVZGWFlUQlhhV1ZWVmtONFdVeDNDamhZZDNsalNWSmxOVWhaV1hKblNXaEJURXdyTURWdmNVcDJNa3N6Y2tGS1VXbElkR2xLTjBjM2JuTklNM2RwU0RFdmNuVXdkUzltUW1JclVBb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIGNsaWVudC1rZXktZGF0YTogTFMwdExTMUNSVWRKVGlCRlF5QlFVa2xXUVZSRklFdEZXUzB0TFMwdENrMUlZME5CVVVWRlNVdEtibEV5WkdKdlUzVkdka3haUnpReWVYQlhURXBIVmpOU01XVjFTMnBDTkUxRmJYaHRaRFZETlRKdlFXOUhRME54UjFOTk5Ea0tRWGRGU0c5VlVVUlJaMEZGWTJGdE9EQk9kbWMzU1ZGSlJYQlZieXRvVW5remJUZG5MMWhWUTBGNVMzYzVTRGN5UjNGR1UzUk9VbWd2Ynl0dVREQlFkZ295ZUZOdloyaFlSM0IyWVdSWGQzSnRjRlZ5ZUhnNVVURjZXV2xtTmpWNldYRlJQVDBLTFMwdExTMUZUa1FnUlVNZ1VGSkpWa0ZVUlNCTFJWa3RMUzB0TFFvPQo=
+  kubeconfig: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFZFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTFVWZEpWRGgxVGtJdmNXSXlabkpRYVRJeVNERXphVzlhTlRodVQxUmhiV3gyYm5KSFRuSUtXR3ROUTFwc2VYUkJNbWhyVFhodFUxaFNSVGhWVm5GSmIzVktSek5LYmxSNk4ycHNheTlvVDNvclEzcERUVWRxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTNseksxSnZlakZtU2tOVFRXNDJTVTE2Q2pScVYyTlNaekpFT0dwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtsQlJFSkdRV2xGUVROa1RYWkliV1JMZEU1eE5YbzVWVGR5Vm5SR1RTOURXRXBCWTBVS1luSlRXRTB4TW5KQ1JXcExSMjlOUTBsSVJHWmllREl2UW1nMGVDODBXVWN5UTFkT2VXazVVblJJVkZsbWJHbENaVTR2ZEdSSmFGUkhhbVF2Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ1LjQwLjk0Ljg5OjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICB1c2VyOiBkZWZhdWx0CiAgbmFtZTogZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBkZWZhdWx0CiAgdXNlcjoKICAgIGNsaWVudC1jZXJ0aWZpY2F0ZS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKclZFTkRRVlJwWjBGM1NVSkJaMGxKVmpoelYxTm5iRFpyUkRoM1EyZFpTVXR2V2tsNmFqQkZRWGRKZDBwRVJXbE5RMEZIUVRGVlJVRjNkMW9LWTIxMGJFMXBNV3BpUjJ4c1ltNVJkRmt5UmtGTlZHTjRUMVJSTkU1RVRUSlBWRUZsUm5jd2VVNUVRVEpOYW1ONFRVUk5lVTVFYkdGR2R6QjVUbFJCTWdwTmFtTjRUVVJOZVU1RWJHRk5SRUY0Um5wQlZrSm5UbFpDUVc5VVJHNU9OV016VW14aVZIQjBXVmhPTUZwWVNucE5VbFYzUlhkWlJGWlJVVVJGZDNoNkNtVllUakJhVnpBMldWZFNkR0ZYTkhkWFZFRlVRbWRqY1docmFrOVFVVWxDUW1kbmNXaHJhazlRVVUxQ1FuZE9RMEZCVkVzclRtZ3pUamRxT1ZSQ05rWUtPSE42VEVsbFR5c3pUeTgxUWxSVmVIZE5ORk51Y1Zka01Ua3hiM0YyTjA1blkwa3ZMMUJ2WWxKeGMzSnNlblpWTjNSb1JrTnlTWEE0ZVdaQk5ucFpjd296ZVRVcmJGZG5kRzh3WjNkU2FrRlBRbWRPVmtoUk9FSkJaamhGUWtGTlEwSmhRWGRGZDFsRVZsSXdiRUpCZDNkRFoxbEpTM2RaUWtKUlZVaEJkMGwzQ2toM1dVUldVakJxUWtKbmQwWnZRVlZvYzA1T01rVkNORmRIUlVZNWQwOW5UREY1VFRGTVEyVk1RVFIzUTJkWlNVdHZXa2w2YWpCRlFYZEpSRkozUVhjS1VrRkpaMDlMWjFWVE4yVkNTRE56VFZSdE9FRmxjM1U0VERsaWVVMTBUelpDYTJkc0syOUdWbE5KY0habk5tOURTVWg0UlVGa09UaDNRM0kzVTNNeVZncHRaa3hGU21kRVRuQkZlamMwUVVkV1p5dGphQzltVDNjeVpGVlpDaTB0TFMwdFJVNUVJRU5GVWxSSlJrbERRVlJGTFMwdExTMEtMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFhUbk1LWVZkV2RXUkRNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGcVlrZHNiR0p1VVhSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKQlkzcExSWFU0TmpjNE9VSjVaRnBTT1dOWVFtTllRVkJ5VUZvNU1XczRZU3RWYm14R1lqWUtkVWh2TDIxaVNTdG5kMHB1YURSVFoxaElWMjk2UjJaRWJYcEZhMUphZEZBNVlpdDVheTlqWldGMmRrVnFXRzFxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTBkM01ETlpVVWhvV1ZsUldETkJOa0YyQ2xoSmVsVnpTalJ6UkdwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhvM2NXTmpRMFU1UkhkRFNtbFdaR1JzWjJZdk1uRnFiblZOSzB3S05VOTNSVGxuYmpSaGJrZFNSMDFqUTBsUlF5dGpURkF2ZG5adVptUjVNM0ZzTW1Oa1RrTjFVV2xZVTB4NlFsVm1lSGw0YmxKeE5XTkJOV012UjJjOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIGNsaWVudC1rZXktZGF0YTogTFMwdExTMUNSVWRKVGlCRlF5QlFVa2xXUVZSRklFdEZXUzB0TFMwdENrMUlZME5CVVVWRlNVSmtlWEJDTkZWVU5UY3ZTREZNYWsxeFVIRTJieTlYTlVkM2JIQm1kVlIxUTFkV1EyNU5hMWQwZWt4dlFXOUhRME54UjFOTk5Ea0tRWGRGU0c5VlVVUlJaMEZGZVhacVdXUjZaVFF2VlhkbGFHWk1UWGw1U0dwMmRIcDJLMUZWTVUxalJFOUZjRFpzYm1SbVpHRkxjaXQ2V1VoRFVDOTZOZ3BITUdGeVN6VmpOekZQTjFsU1VYRjVTMlpOYm5kUGN6Sk1UamgxWm5CV2IweFJQVDBLTFMwdExTMUZUa1FnUlVNZ1VGSkpWa0ZVUlNCTFJWa3RMUzB0TFFvPQo=
 kind: Secret
 metadata:
   name: hv-identity-secret
@@ -118,7 +118,7 @@ spec:
       cpu: 1
       memory: 4Gi
       networks:
-      - harvester-public/vlan-1000
+      - harvester-public/vlan-100
       sshKeyPair: default/macos
       sshUser: ubuntu
       volumes:
@@ -138,7 +138,7 @@ spec:
       cpu: 2
       memory: 8Gi
       networks:
-      - harvester-public/vlan-1000
+      - harvester-public/vlan-100
       sshKeyPair: default/macos
       sshUser: ubuntu
       volumes:
@@ -456,36 +456,121 @@ metadata:
 ---
 apiVersion: v1
 data:
-  harvester-cloud-provider-deploy.yaml: "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n
-    \ labels:\n    app.kubernetes.io/component: cloud-provider\n    app.kubernetes.io/name:
-    harvester-cloud-provider\n  name: harvester-cloud-provider\n  namespace: kube-system\nspec:\n
-    \ replicas: 2\n  selector:\n    matchLabels:\n      app.kubernetes.io/component:
-    cloud-provider\n      app.kubernetes.io/name: harvester-cloud-provider\n  template:\n
-    \   metadata:\n      labels:\n        app.kubernetes.io/component: cloud-provider\n
-    \       app.kubernetes.io/name: harvester-cloud-provider\n    spec:\n      containers:\n
-    \     - args:\n        - --cloud-config=/etc/kubernetes/cloud-config\n        command:\n
-    \       - harvester-cloud-provider\n        image: rancher/harvester-cloud-provider:v0.2.0\n
-    \       imagePullPolicy: Always\n        name: harvester-cloud-provider\n        resources:
-    {}\n        volumeMounts:\n        - mountPath: /etc/kubernetes\n          name:
-    cloud-config\n      serviceAccountName: harvester-cloud-controller-manager\n      tolerations:\n
-    \     - effect: NoSchedule\n        key: node-role.kubernetes.io/control-plane\n
-    \       operator: Exists\n      - effect: NoSchedule\n        key: node.cloudprovider.kubernetes.io/uninitialized\n
-    \       operator: Equal\n        value: \"true\"\n      volumes:\n        - name:
-    cloud-config\n          secret:\n            secretName: cloud-config\n---\napiVersion:
-    v1\nkind: ServiceAccount\nmetadata:\n  name: harvester-cloud-controller-manager\n
-    \ namespace: kube-system\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind:
-    ClusterRole\nmetadata:\n  name: harvester-cloud-controller-manager\nrules:\n-
-    apiGroups:\n  - \"\"\n  resources:\n  - services\n  - nodes\n  - events\n  verbs:\n
-    \ - get\n  - list\n  - watch\n  - create\n  - update\n  - patch\n- apiGroups:\n
-    \ - \"\"\n  resources:\n  - services/status\n  verbs:\n  - update\n  - patch\n-
-    apiGroups:\n  - \"\"\n  resources:\n  - nodes/status\n  verbs:\n  - patch\n  -
-    update\n- apiGroups:\n  - coordination.k8s.io\n  resources:\n  - leases\n  verbs:\n
-    \ - get\n  - create\n  - update\n---\nkind: ClusterRoleBinding\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n
-    \ name: harvester-cloud-controller-manager\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n
-    \ kind: ClusterRole\n  name: harvester-cloud-controller-manager\nsubjects:\n  -
-    kind: ServiceAccount\n    name: harvester-cloud-controller-manager\n    namespace:
-    kube-system\n---\napiVersion: v1\ndata:\n  cloud-config: \nkind: Secret\nmetadata:\n
-    \ creationTimestamp: null\n  name: cloud-config\n  namespace: kube-system\n"
+  harvester-cloud-provider-deploy.yaml: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      labels:
+        app.kubernetes.io/component: cloud-provider
+        app.kubernetes.io/name: harvester-cloud-provider
+      name: harvester-cloud-provider
+      namespace: kube-system
+    spec:
+      replicas: 2
+      selector:
+        matchLabels:
+          app.kubernetes.io/component: cloud-provider
+          app.kubernetes.io/name: harvester-cloud-provider
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/component: cloud-provider
+            app.kubernetes.io/name: harvester-cloud-provider
+        spec:
+          containers:
+          - args:
+            - --cloud-config=/etc/kubernetes/cloud-config
+            command:
+            - harvester-cloud-provider
+            image: rancher/harvester-cloud-provider:v0.2.0
+            imagePullPolicy: Always
+            name: harvester-cloud-provider
+            resources: {}
+            volumeMounts:
+            - mountPath: /etc/kubernetes
+              name: cloud-config
+          serviceAccountName: harvester-cloud-controller-manager
+          tolerations:
+          - effect: NoSchedule
+            key: node-role.kubernetes.io/control-plane
+            operator: Exists
+          - effect: NoSchedule
+            key: node.cloudprovider.kubernetes.io/uninitialized
+            operator: Equal
+            value: "true"
+          volumes:
+            - name: cloud-config
+              secret:
+                secretName: cloud-config
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: harvester-cloud-controller-manager
+      namespace: kube-system
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: harvester-cloud-controller-manager
+    rules:
+    - apiGroups:
+      - ""
+      resources:
+      - services
+      - nodes
+      - events
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+    - apiGroups:
+      - ""
+      resources:
+      - services/status
+      verbs:
+      - update
+      - patch
+    - apiGroups:
+      - ""
+      resources:
+      - nodes/status
+      verbs:
+      - patch
+      - update
+    - apiGroups:
+      - coordination.k8s.io
+      resources:
+      - leases
+      verbs:
+      - get
+      - create
+      - update
+    ---
+    kind: ClusterRoleBinding
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: harvester-cloud-controller-manager
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: harvester-cloud-controller-manager
+    subjects:
+      - kind: ServiceAccount
+        name: harvester-cloud-controller-manager
+        namespace: kube-system
+    ---
+    apiVersion: v1
+    data:
+      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFZFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTFVWZEpWRGgxVGtJdmNXSXlabkpRYVRJeVNERXphVzlhTlRodVQxUmhiV3gyYm5KSFRuSUtXR3ROUTFwc2VYUkJNbWhyVFhodFUxaFNSVGhWVm5GSmIzVktSek5LYmxSNk4ycHNheTlvVDNvclEzcERUVWRxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTNseksxSnZlakZtU2tOVFRXNDJTVTE2Q2pScVYyTlNaekpFT0dwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtsQlJFSkdRV2xGUVROa1RYWkliV1JMZEU1eE5YbzVWVGR5Vm5SR1RTOURXRXBCWTBVS1luSlRXRTB4TW5KQ1JXcExSMjlOUTBsSVJHWmllREl2UW1nMGVDODBXVWN5UTFkT2VXazVVblJJVkZsbWJHbENaVTR2ZEdSSmFGUkhhbVF2Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ1LjQwLjk0Ljg5OjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICBuYW1lc3BhY2U6IGRlZmF1bHQKICAgIHVzZXI6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdAogIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdApraW5kOiBDb25maWcKcHJlZmVyZW5jZXM6IHt9CnVzZXJzOgotIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdAogIHVzZXI6CiAgICB0b2tlbjogZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrZ3RhbFpIVG5VeGFYUlRNVU5HY1ZodmExWm9aRkUzTlhNek9DMWhNMUJvYWkxeVlqUXRTRzFVVGtraWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbU5zYjNWa0xYQnliM1pwWkdWeUxXUnZablYzTFhSdmEyVnVJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1Ym1GdFpTSTZJbU5zYjNWa0xYQnliM1pwWkdWeUxXUnZablYzSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWRXbGtJam9pTWpoak9Ea3hObU10WWpBMU1TMDBaalk0TFRoaVlqa3RNR0ZoWW1ReE5USTJPRFV6SWl3aWMzVmlJam9pYzNsemRHVnRPbk5sY25acFkyVmhZMk52ZFc1ME9tUmxabUYxYkhRNlkyeHZkV1F0Y0hKdmRtbGtaWEl0Wkc5bWRYY2lmUS5FVW0xNGxpcHVCWmpoNlpGTHA0ZDRmeHRMRHJoMEZSd0JnTHZ2eXBNbHBTajlwYVlObmlVSzRYcmVPRGpRbXFMdnkwN0ZCWDgtZ25CYzM1cHRJX2JTTzRkSVpweURPSXpudWE2eWJBa1FWNWdpRmFUMnFXOERNVXU1NV9QNjhiaW5pQmxDUHUzMVZqYlZfamx3eGdBQTUwNGRYeHhlTjZaRUwxbnk1R09vMVRuOWFCRVRnZGxYODd6RG1IdG0wN1p1WEZnUl8tTVZINXFLRGgwNVNoNnJFOU1nbkM4NENORHNGOWZpbU1JWVhTTE5tZ0pRX21qb1FBd25VWVhGUDVWLUhKa2tJX3REcG9kNTIxNllSWElaMmFFZkN2ZVB1QWdsWmtKSWZIOWVWeDlVTkNLbzhnV1c5OTNpTTc2NHNSMXJneGtiYmlEZ09tU2ZVa0JYLUtxbHcK
+    kind: Secret
+    metadata:
+      creationTimestamp: null
+      name: cloud-config
+      namespace: kube-system
 kind: ConfigMap
 metadata:
   name: harvester-csi-driver-addon
