@@ -41,7 +41,7 @@ spec:
       port: 9345
       protocol: TCP
   server: https://147.28.184.123:6443
-  targetNamespace: default
+  targetNamespace: ns-2o1fa
 ---
 apiVersion: v1
 data:
