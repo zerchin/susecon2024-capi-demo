@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: example-rke2
+  name: 2o1fa
 ---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
@@ -12,7 +12,7 @@ metadata:
     cni: external
     csi: external
   name: test-rk
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
@@ -27,11 +27,11 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterCluster
 metadata:
   name: test-rk-hv
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   identitySecret:
     name: hv-identity-secret
-    namespace: example-rke2
+    namespace: 2o1fa
   loadBalancerConfig:
     ipPoolRef: pool-1
     ipamType: pool
@@ -40,22 +40,22 @@ spec:
       name: rke2-server
       port: 9345
       protocol: TCP
-  server: https://145.40.94.89:6443
+  server: https://147.28.184.123:6443
   targetNamespace: default
 ---
 apiVersion: v1
 data:
-  kubeconfig: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFZFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTFVWZEpWRGgxVGtJdmNXSXlabkpRYVRJeVNERXphVzlhTlRodVQxUmhiV3gyYm5KSFRuSUtXR3ROUTFwc2VYUkJNbWhyVFhodFUxaFNSVGhWVm5GSmIzVktSek5LYmxSNk4ycHNheTlvVDNvclEzcERUVWRxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTNseksxSnZlakZtU2tOVFRXNDJTVTE2Q2pScVYyTlNaekpFT0dwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtsQlJFSkdRV2xGUVROa1RYWkliV1JMZEU1eE5YbzVWVGR5Vm5SR1RTOURXRXBCWTBVS1luSlRXRTB4TW5KQ1JXcExSMjlOUTBsSVJHWmllREl2UW1nMGVDODBXVWN5UTFkT2VXazVVblJJVkZsbWJHbENaVTR2ZEdSSmFGUkhhbVF2Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ1LjQwLjk0Ljg5OjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICB1c2VyOiBkZWZhdWx0CiAgbmFtZTogZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBkZWZhdWx0CiAgdXNlcjoKICAgIGNsaWVudC1jZXJ0aWZpY2F0ZS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKclZFTkRRVlJwWjBGM1NVSkJaMGxKVmpoelYxTm5iRFpyUkRoM1EyZFpTVXR2V2tsNmFqQkZRWGRKZDBwRVJXbE5RMEZIUVRGVlJVRjNkMW9LWTIxMGJFMXBNV3BpUjJ4c1ltNVJkRmt5UmtGTlZHTjRUMVJSTkU1RVRUSlBWRUZsUm5jd2VVNUVRVEpOYW1ONFRVUk5lVTVFYkdGR2R6QjVUbFJCTWdwTmFtTjRUVVJOZVU1RWJHRk5SRUY0Um5wQlZrSm5UbFpDUVc5VVJHNU9OV016VW14aVZIQjBXVmhPTUZwWVNucE5VbFYzUlhkWlJGWlJVVVJGZDNoNkNtVllUakJhVnpBMldWZFNkR0ZYTkhkWFZFRlVRbWRqY1docmFrOVFVVWxDUW1kbmNXaHJhazlRVVUxQ1FuZE9RMEZCVkVzclRtZ3pUamRxT1ZSQ05rWUtPSE42VEVsbFR5c3pUeTgxUWxSVmVIZE5ORk51Y1Zka01Ua3hiM0YyTjA1blkwa3ZMMUJ2WWxKeGMzSnNlblpWTjNSb1JrTnlTWEE0ZVdaQk5ucFpjd296ZVRVcmJGZG5kRzh3WjNkU2FrRlBRbWRPVmtoUk9FSkJaamhGUWtGTlEwSmhRWGRGZDFsRVZsSXdiRUpCZDNkRFoxbEpTM2RaUWtKUlZVaEJkMGwzQ2toM1dVUldVakJxUWtKbmQwWnZRVlZvYzA1T01rVkNORmRIUlVZNWQwOW5UREY1VFRGTVEyVk1RVFIzUTJkWlNVdHZXa2w2YWpCRlFYZEpSRkozUVhjS1VrRkpaMDlMWjFWVE4yVkNTRE56VFZSdE9FRmxjM1U0VERsaWVVMTBUelpDYTJkc0syOUdWbE5KY0habk5tOURTVWg0UlVGa09UaDNRM0kzVTNNeVZncHRaa3hGU21kRVRuQkZlamMwUVVkV1p5dGphQzltVDNjeVpGVlpDaTB0TFMwdFJVNUVJRU5GVWxSSlJrbERRVlJGTFMwdExTMEtMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFhUbk1LWVZkV2RXUkRNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGcVlrZHNiR0p1VVhSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKQlkzcExSWFU0TmpjNE9VSjVaRnBTT1dOWVFtTllRVkJ5VUZvNU1XczRZU3RWYm14R1lqWUtkVWh2TDIxaVNTdG5kMHB1YURSVFoxaElWMjk2UjJaRWJYcEZhMUphZEZBNVlpdDVheTlqWldGMmRrVnFXRzFxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTBkM01ETlpVVWhvV1ZsUldETkJOa0YyQ2xoSmVsVnpTalJ6UkdwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhvM2NXTmpRMFU1UkhkRFNtbFdaR1JzWjJZdk1uRnFiblZOSzB3S05VOTNSVGxuYmpSaGJrZFNSMDFqUTBsUlF5dGpURkF2ZG5adVptUjVNM0ZzTW1Oa1RrTjFVV2xZVTB4NlFsVm1lSGw0YmxKeE5XTkJOV012UjJjOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIGNsaWVudC1rZXktZGF0YTogTFMwdExTMUNSVWRKVGlCRlF5QlFVa2xXUVZSRklFdEZXUzB0TFMwdENrMUlZME5CVVVWRlNVSmtlWEJDTkZWVU5UY3ZTREZNYWsxeFVIRTJieTlYTlVkM2JIQm1kVlIxUTFkV1EyNU5hMWQwZWt4dlFXOUhRME54UjFOTk5Ea0tRWGRGU0c5VlVVUlJaMEZGZVhacVdXUjZaVFF2VlhkbGFHWk1UWGw1U0dwMmRIcDJLMUZWTVUxalJFOUZjRFpzYm1SbVpHRkxjaXQ2V1VoRFVDOTZOZ3BITUdGeVN6VmpOekZQTjFsU1VYRjVTMlpOYm5kUGN6Sk1UamgxWm5CV2IweFJQVDBLTFMwdExTMUZUa1FnUlVNZ1VGSkpWa0ZVUlNCTFJWa3RMUzB0TFFvPQo=
+  kubeconfig: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEpNVTE2VlRWT1ZGbDNUVUkwV0VSVVNUQk5SR3QzVFhwRmQwMTZTVEJOUm05WVJGUk5NRTFFYTNkTlZFVjNUWHBKTUFwTlJtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZVU1VVRURlBWRlV5VFVSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKQ0sxWkxRMVZRU0RsVVZubFBlUzlaZGpGeFdWcGtjMk5CTlhaNGVGTjVMMFZDY0hKVGRrOEtPRkZ0WlVoR2MyTnpNRGQxT1d0UGRTdDZjU3RWYmt4Q01XdDRXVGh6Y2tWQk1XSjBNbTVXTUhGWVlWQnVkblZxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTFocWFVcHBVR1JvYm1jMlYyNTRTUzlhQ2xZNVFUbHpkbkJoU0VSQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhKcFEwMUxRVlpWZEVjM05qY3daREpRTm5SWWQwNUZMM2c1UTJJS1pGbE5ZVXBOWTNkUFUwbE9OVzlCUTBsUlJFZzJVRWhsUkhRclJYQk9SVEpUYm5CUVdHcGtUa013TDFoUFdVSktZbVpoUW5OWU0xaG1iMjFzVmxFOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIHNlcnZlcjogaHR0cHM6Ly8xNDcuMjguMTg0LjEyMzo2NDQzCiAgbmFtZTogZGVmYXVsdApjb250ZXh0czoKLSBjb250ZXh0OgogICAgY2x1c3RlcjogZGVmYXVsdAogICAgdXNlcjogZGVmYXVsdAogIG5hbWU6IGRlZmF1bHQKY3VycmVudC1jb250ZXh0OiBkZWZhdWx0CmtpbmQ6IENvbmZpZwpwcmVmZXJlbmNlczoge30KdXNlcnM6Ci0gbmFtZTogZGVmYXVsdAogIHVzZXI6CiAgICBjbGllbnQtY2VydGlmaWNhdGUtZGF0YTogTFMwdExTMUNSVWRKVGlCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2sxSlNVSnJWRU5EUVZScFowRjNTVUpCWjBsSlFtSTFTRzUyUmsxeEwwMTNRMmRaU1V0dldrbDZhakJGUVhkSmQwcEVSV2xOUTBGSFFURlZSVUYzZDFvS1kyMTBiRTFwTVdwaVIyeHNZbTVSZEZreVJrRk5WR041VGxSTk1VOVVWVEpOUkVGbFJuY3dlVTVFUVRWTlJFMTRUVVJOZVU1RVFtRkdkekI1VGxSQk5RcE5SRTE0VFVSTmVVNUVRbUZOUkVGNFJucEJWa0puVGxaQ1FXOVVSRzVPTldNelVteGlWSEIwV1ZoT01GcFlTbnBOVWxWM1JYZFpSRlpSVVVSRmQzaDZDbVZZVGpCYVZ6QTJXVmRTZEdGWE5IZFhWRUZVUW1kamNXaHJhazlRVVVsQ1FtZG5jV2hyYWs5UVVVMUNRbmRPUTBGQlVVOVRXalF5TmxSTFlqZzNaa0VLVG13NWJqbHVVbUZLWkZOd2FuUlFaSFpXTVhGemRXTlhZV1JxTDBrNWFsazBVekUyYUZJNFJtMDNhekZPUjFwV2N5OHpPSEoyY0dsMlUweDRVbVpVZVFwTlZEY3ZlV3hxVVc4d1ozZFNha0ZQUW1kT1ZraFJPRUpCWmpoRlFrRk5RMEpoUVhkRmQxbEVWbEl3YkVKQmQzZERaMWxKUzNkWlFrSlJWVWhCZDBsM0NraDNXVVJXVWpCcVFrSm5kMFp2UVZWQ1JFeFNjR0kwWW1sMVVVbFFjSGhETVhWemEwMXFjRmN3V25kM1EyZFpTVXR2V2tsNmFqQkZRWGRKUkZKM1FYY0tVa0ZKWjBaNU4zSnpXRWxEUjFGc1FtVTVURTkzYlhWdllqVnFlbU5KYkd3NE1HMUpRM2w2VlVJclMxWktOMmREU1Vjd1kwTnZSR3cxY1VSa2NrdFdaZ3BSV0RkdFdtUlJaMmRGVkhCWVJscHFUMlJFWWl0TWNWZHFUVXBXQ2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLTFMwdExTMUNSVWRKVGlCRFJWSlVTVVpKUTBGVVJTMHRMUzB0Q2sxSlNVSmxWRU5EUVZJclowRjNTVUpCWjBsQ1FVUkJTMEpuWjNGb2EycFBVRkZSUkVGcVFXdE5VMGwzU1VGWlJGWlJVVVJFUW14NVlUSlZlVXhYVG5NS1lWZFdkV1JETVdwWlZVRjRUbnBKTVUxNlZUVk9WRmwzVFVJMFdFUlVTVEJOUkd0M1RYcEZkMDE2U1RCTlJtOVlSRlJOTUUxRWEzZE5WRVYzVFhwSk1BcE5SbTkzU2tSRmFVMURRVWRCTVZWRlFYZDNXbU50ZEd4TmFURnFZa2RzYkdKdVVYUlpNa1pCVFZSamVVNVVUVEZQVkZVeVRVUkNXazFDVFVkQ2VYRkhDbE5OTkRsQlowVkhRME54UjFOTk5EbEJkMFZJUVRCSlFVSkhVRWQyVFhoT2NXeHZja0V6VWs1aWFYcGliazl1TDBvMFYyUllVbGhaZVdaQ1ZVSnJhM0lLVGsxaVNHRk1OVmswY0ZGTWRUVTFhVlkxV0VSQlZXaFpURXMwYzFsbk9ESjRWSEpxWlhodmJrZzJNMXBYZFRKcVVXcENRVTFCTkVkQk1WVmtSSGRGUWdvdmQxRkZRWGRKUTNCRVFWQkNaMDVXU0ZKTlFrRm1PRVZDVkVGRVFWRklMMDFDTUVkQk1WVmtSR2RSVjBKQ1VVVk5kRWRzZG1oMVN6VkJaeXR1UlV4WENqWjVVWGxQYkdKU2JrUkJTMEpuWjNGb2EycFBVRkZSUkVGblRrbEJSRUpHUVdsRlFUbE1WMHN5UlRKaVMyMUlSMVJEZUhBeGVsWklaaXRaWlhBeWRYWUtWbGN5TmtablJXMUphRXRHVkVjd1EwbEJSeXR6UmpobGJqWm1lRkIxUzNkVVpIZ3ZZbmxwV0U1YU5GSllUakYzUkd0dGVHcHNPWFJLUmpoWUNpMHRMUzB0UlU1RUlFTkZVbFJKUmtsRFFWUkZMUzB0TFMwSwogICAgY2xpZW50LWtleS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJGUXlCUVVrbFdRVlJGSUV0RldTMHRMUzB0Q2sxSVkwTkJVVVZGU1VSSlUwVXlXVE54SzBWTmFHOW9PRFk1WlVabU1rUmxVRWM0Ymt0c05HaE9NMkZCVDNCVFYwMTNUMUJ2UVc5SFEwTnhSMU5OTkRrS1FYZEZTRzlWVVVSUlowRkZSR3R0WlU1MWEzbHRMMDh6ZDBSYVpsb3ZXakJYYVZoVmNWazNWRE5pTVdSaGNreHVSbTF1V1M5NVVGa3lUMFYwWlc5VlpncENXblUxVGxSU2JWWmlVRGt2U3pjMldYSXdhVGhWV0RBNGFrVXJMemh3V1RCQlBUMEtMUzB0TFMxRlRrUWdSVU1nVUZKSlZrRlVSU0JMUlZrdExTMHRMUW89Cg==
 kind: Secret
 metadata:
   name: hv-identity-secret
-  namespace: example-rke2
+  namespace: 2o1fa
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
 kind: RKE2ControlPlane
 metadata:
   name: test-rk-control-plane
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   agentConfig:
     version: v1.26.6+rke2r1
@@ -63,7 +63,7 @@ spec:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: HarvesterMachineTemplate
     name: test-rk-cp-machine
-    namespace: example-rke2
+    namespace: 2o1fa
   replicas: 3
   serverConfig:
     cloudProviderName: external
@@ -73,7 +73,7 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
 kind: RKE2ConfigTemplate
 metadata:
   name: test-rk-worker
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   template:
     spec:
@@ -84,7 +84,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   name: test-rk-workers
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   clusterName: test-rk
   replicas: 2
@@ -98,20 +98,20 @@ spec:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
           kind: RKE2ConfigTemplate
           name: test-rk-worker
-          namespace: example-rke2
+          namespace: 2o1fa
       clusterName: test-rk
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
         kind: HarvesterMachineTemplate
         name: test-rk-wk-machine
-        namespace: example-rke2
+        namespace: 2o1fa
       version: v1.26.6
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-wk-machine
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   template:
     spec:
@@ -131,7 +131,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-cp-machine
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   template:
     spec:
@@ -151,7 +151,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-ccm
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -165,7 +165,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-csi
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -179,7 +179,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-calico-chart-config
-  namespace: example-rke2
+  namespace: 2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -214,7 +214,7 @@ data:
               env:
                 - name: ADDRESS
                   value: /csi/csi.sock
-              image: longhornio/csi-node-driver-registrar:v1.2.0-lh1
+              image: rancher/mirrored-longhornio-csi-node-driver-registrar:v2.3.0
               lifecycle:
                 preStop:
                   exec:
@@ -361,7 +361,6 @@ data:
             - args:
                 - --v=5
                 - --csi-address=$(ADDRESS)
-                - --csiTimeout=2m5s
                 - --leader-election
                 - --leader-election-namespace=$(POD_NAMESPACE)
               env:
@@ -372,7 +371,7 @@ data:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              image: longhornio/csi-resizer:v0.5.1-lh1
+              image: rancher/mirrored-longhornio-csi-resizer:v1.2.0
               name: csi-resizer
               volumeMounts:
                 - mountPath: /csi/
@@ -381,8 +380,7 @@ data:
                 - --v=5
                 - --csi-address=$(ADDRESS)
                 - --timeout=2m5s
-                - --enable-leader-election
-                - --leader-election-type=leases
+                - --leader-election
                 - --leader-election-namespace=$(POD_NAMESPACE)
               env:
                 - name: ADDRESS
@@ -392,7 +390,7 @@ data:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              image: longhornio/csi-provisioner:v1.6.0-lh1
+              image: rancher/mirrored-longhornio-csi-provisioner:v2.1.2
               name: csi-provisioner
               volumeMounts:
                 - mountPath: /csi/
@@ -411,7 +409,7 @@ data:
                     fieldRef:
                       apiVersion: v1
                       fieldPath: metadata.namespace
-              image: longhornio/csi-attacher:v2.2.1-lh1
+              image: rancher/mirrored-longhornio-csi-attacher:v3.2.1
               name: csi-attacher
               volumeMounts:
                 - mountPath: /csi/
@@ -452,7 +450,7 @@ data:
 kind: ConfigMap
 metadata:
   name: cloud-controller-manager-addon
-  namespace: example-rke2
+  namespace: 2o1fa
 ---
 apiVersion: v1
 data:
@@ -482,7 +480,7 @@ data:
             - --cloud-config=/etc/kubernetes/cloud-config
             command:
             - harvester-cloud-provider
-            image: rancher/harvester-cloud-provider:v0.2.0
+            image: rancher/harvester-cloud-provider:v0.2.1
             imagePullPolicy: Always
             name: harvester-cloud-provider
             resources: {}
@@ -564,17 +562,17 @@ data:
         namespace: kube-system
     ---
     apiVersion: v1
-    data:
-      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFZFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEZOVTVFWnpCTmVsazFUVUkwV0VSVVNUQk5SRmw1VG5wRmQwMTZTVEJQVm05WVJGUk5NRTFFV1hsT1ZFVjNUWHBKTUFwUFZtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZUU5VVVUUk9SRTB5VDFSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKTFVWZEpWRGgxVGtJdmNXSXlabkpRYVRJeVNERXphVzlhTlRodVQxUmhiV3gyYm5KSFRuSUtXR3ROUTFwc2VYUkJNbWhyVFhodFUxaFNSVGhWVm5GSmIzVktSek5LYmxSNk4ycHNheTlvVDNvclEzcERUVWRxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTNseksxSnZlakZtU2tOVFRXNDJTVTE2Q2pScVYyTlNaekpFT0dwQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtsQlJFSkdRV2xGUVROa1RYWkliV1JMZEU1eE5YbzVWVGR5Vm5SR1RTOURXRXBCWTBVS1luSlRXRTB4TW5KQ1JXcExSMjlOUTBsSVJHWmllREl2UW1nMGVDODBXVWN5UTFkT2VXazVVblJJVkZsbWJHbENaVTR2ZEdSSmFGUkhhbVF2Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ1LjQwLjk0Ljg5OjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICBuYW1lc3BhY2U6IGRlZmF1bHQKICAgIHVzZXI6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdAogIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdApraW5kOiBDb25maWcKcHJlZmVyZW5jZXM6IHt9CnVzZXJzOgotIG5hbWU6IGNsb3VkLXByb3ZpZGVyLWRvZnV3LWRlZmF1bHQtZGVmYXVsdAogIHVzZXI6CiAgICB0b2tlbjogZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrZ3RhbFpIVG5VeGFYUlRNVU5HY1ZodmExWm9aRkUzTlhNek9DMWhNMUJvYWkxeVlqUXRTRzFVVGtraWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbU5zYjNWa0xYQnliM1pwWkdWeUxXUnZablYzTFhSdmEyVnVJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpYSjJhV05sTFdGalkyOTFiblF1Ym1GdFpTSTZJbU5zYjNWa0xYQnliM1pwWkdWeUxXUnZablYzSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWRXbGtJam9pTWpoak9Ea3hObU10WWpBMU1TMDBaalk0TFRoaVlqa3RNR0ZoWW1ReE5USTJPRFV6SWl3aWMzVmlJam9pYzNsemRHVnRPbk5sY25acFkyVmhZMk52ZFc1ME9tUmxabUYxYkhRNlkyeHZkV1F0Y0hKdmRtbGtaWEl0Wkc5bWRYY2lmUS5FVW0xNGxpcHVCWmpoNlpGTHA0ZDRmeHRMRHJoMEZSd0JnTHZ2eXBNbHBTajlwYVlObmlVSzRYcmVPRGpRbXFMdnkwN0ZCWDgtZ25CYzM1cHRJX2JTTzRkSVpweURPSXpudWE2eWJBa1FWNWdpRmFUMnFXOERNVXU1NV9QNjhiaW5pQmxDUHUzMVZqYlZfamx3eGdBQTUwNGRYeHhlTjZaRUwxbnk1R09vMVRuOWFCRVRnZGxYODd6RG1IdG0wN1p1WEZnUl8tTVZINXFLRGgwNVNoNnJFOU1nbkM4NENORHNGOWZpbU1JWVhTTE5tZ0pRX21qb1FBd25VWVhGUDVWLUhKa2tJX3REcG9kNTIxNllSWElaMmFFZkN2ZVB1QWdsWmtKSWZIOWVWeDlVTkNLbzhnV1c5OTNpTTc2NHNSMXJneGtiYmlEZ09tU2ZVa0JYLUtxbHcK
     kind: Secret
     metadata:
-      creationTimestamp: null
       name: cloud-config
       namespace: kube-system
+    type: Opaque
+    data:
+      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbGFrTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEpNVTE2VlRWT1ZGbDNUVUkwV0VSVVNUQk5SR3QzVFhwRmQwMTZTVEJOUm05WVJGUk5NRTFFYTNkTlZFVjNUWHBKTUFwTlJtOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZVU1VVRURlBWRlV5VFVSQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKQ0sxWkxRMVZRU0RsVVZubFBlUzlaZGpGeFdWcGtjMk5CTlhaNGVGTjVMMFZDY0hKVGRrOEtPRkZ0WlVoR2MyTnpNRGQxT1d0UGRTdDZjU3RWYmt4Q01XdDRXVGh6Y2tWQk1XSjBNbTVXTUhGWVlWQnVkblZxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVTFocWFVcHBVR1JvYm1jMlYyNTRTUzlhQ2xZNVFUbHpkbkJoU0VSQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtwQlJFSkhRV2xGUVhKcFEwMUxRVlpWZEVjM05qY3daREpRTm5SWWQwNUZMM2c1UTJJS1pGbE5ZVXBOWTNkUFUwbE9OVzlCUTBsUlJFZzJVRWhsUkhRclJYQk9SVEpUYm5CUVdHcGtUa013TDFoUFdVSktZbVpoUW5OWU0xaG1iMjFzVmxFOVBRb3RMUzB0TFVWT1JDQkRSVkpVU1VaSlEwRlVSUzB0TFMwdENnPT0KICAgIHNlcnZlcjogaHR0cHM6Ly8xNDcuMjguMTg0LjEyMzo2NDQzCiAgbmFtZTogZGVmYXVsdApjb250ZXh0czoKLSBjb250ZXh0OgogICAgY2x1c3RlcjogZGVmYXVsdAogICAgbmFtZXNwYWNlOiBkZWZhdWx0CiAgICB1c2VyOiBjbG91ZC1wcm92aWRlci1kZWZhdWx0LWRlZmF1bHQKICBuYW1lOiBjbG91ZC1wcm92aWRlci1kZWZhdWx0LWRlZmF1bHQKY3VycmVudC1jb250ZXh0OiBjbG91ZC1wcm92aWRlci1kZWZhdWx0LWRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBjbG91ZC1wcm92aWRlci1kZWZhdWx0LWRlZmF1bHQKICB1c2VyOgogICAgdG9rZW46IGV5SmhiR2NpT2lKU1V6STFOaUlzSW10cFpDSTZJbkYxYkVwQmVIZFhMV040Y0ZaM1pEQklTbFZGVG1kVVVGcDBkbU00WjFOeVV6TmlXRUZYVFZCQlUyY2lmUS5leUpwYzNNaU9pSnJkV0psY201bGRHVnpMM05sY25acFkyVmhZMk52ZFc1MElpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl1WVcxbGMzQmhZMlVpT2lKa1pXWmhkV3gwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaV055WlhRdWJtRnRaU0k2SW1Oc2IzVmtMWEJ5YjNacFpHVnlMWFJ2YTJWdUlpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WlhKMmFXTmxMV0ZqWTI5MWJuUXVibUZ0WlNJNkltTnNiM1ZrTFhCeWIzWnBaR1Z5SWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXpaWEoyYVdObExXRmpZMjkxYm5RdWRXbGtJam9pTWpaaU1EWTFNbUV0TlRVMk9DMDBOV0ZsTFRoaE9XSXRaalJrWmpJell6QTNOekkzSWl3aWMzVmlJam9pYzNsemRHVnRPbk5sY25acFkyVmhZMk52ZFc1ME9tUmxabUYxYkhRNlkyeHZkV1F0Y0hKdmRtbGtaWElpZlEucklhV2RnYi04UjFnQXJpU2l2cjRGU3NUeWkwQkpZVzFVSGMzX1hsRHJtc2FrNml4SktCQlRaZi1XOS1rVXpRMHpURzQ3UEN3WHVRenM2b05GTnB3cHhOWXNCR08xNG5haFk1dGoyX0d6SE53S3UxSHZpWlRJSWNNcU5BcW81OUUySnZLR0xOZUpPUGdlSzJjMFpVU2xyYnRuazY2RGxDM0xwSUQ5a3BmTzVNb0FtZVZseGdKZzJKYnlUVHhYem40cUY0Q3Ffd3RobE11S2tDdWM5UFJmZlM0RHZCVUJNMHdoNzdYMzEzeENPcmlOUVRXZU1td2h3VkFaN0Nya0t1MjhiNkpBekZKdnhTcDVGR1NsNHJEM1lZU2phYWpTZzJKVWc3M3VBMHFzMEx4eGxCQ2lQRkZRaWI3ZlNEbGx5VjNZU3ZtTWxBazBzNmgtMXRlNGpIbVZ3Cg==
 kind: ConfigMap
 metadata:
   name: harvester-csi-driver-addon
-  namespace: example-rke2
+  namespace: 2o1fa
 ---
 apiVersion: v1
 data:
@@ -601,4 +599,4 @@ data:
 kind: ConfigMap
 metadata:
   name: calico-helm-config
-  namespace: example-rke2
+  namespace: 2o1fa
