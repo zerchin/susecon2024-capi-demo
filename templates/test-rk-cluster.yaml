@@ -1,7 +1,7 @@
 #apiVersion: v1
 #kind: Namespace
 #metadata:
-#  name: 2o1fa
+#  name: ns-2o1fa
 #---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
@@ -12,7 +12,7 @@ metadata:
     cni: external
     csi: external
   name: test-rk
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
@@ -27,11 +27,11 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterCluster
 metadata:
   name: test-rk-hv
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   identitySecret:
     name: hv-identity-secret
-    namespace: 2o1fa
+    namespace: ns-2o1fa
   loadBalancerConfig:
     ipPoolRef: pool-1
     ipamType: pool
@@ -49,13 +49,13 @@ data:
 kind: Secret
 metadata:
   name: hv-identity-secret
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
 kind: RKE2ControlPlane
 metadata:
   name: test-rk-control-plane
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   agentConfig:
     version: v1.26.6+rke2r1
@@ -63,7 +63,7 @@ spec:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: HarvesterMachineTemplate
     name: test-rk-cp-machine
-    namespace: 2o1fa
+    namespace: ns-2o1fa
   replicas: 3
   serverConfig:
     cloudProviderName: external
@@ -73,7 +73,7 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
 kind: RKE2ConfigTemplate
 metadata:
   name: test-rk-worker
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   template:
     spec:
@@ -84,7 +84,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   name: test-rk-workers
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   clusterName: test-rk
   replicas: 2
@@ -98,20 +98,20 @@ spec:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
           kind: RKE2ConfigTemplate
           name: test-rk-worker
-          namespace: 2o1fa
+          namespace: ns-2o1fa
       clusterName: test-rk
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
         kind: HarvesterMachineTemplate
         name: test-rk-wk-machine
-        namespace: 2o1fa
+        namespace: ns-2o1fa
       version: v1.26.6
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-wk-machine
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   template:
     spec:
@@ -131,7 +131,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-cp-machine
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   template:
     spec:
@@ -151,7 +151,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-ccm
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -165,7 +165,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-csi
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -179,7 +179,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-calico-chart-config
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 spec:
   clusterSelector:
     matchLabels:
@@ -450,7 +450,7 @@ data:
 kind: ConfigMap
 metadata:
   name: cloud-controller-manager-addon
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 ---
 apiVersion: v1
 data:
@@ -572,7 +572,7 @@ data:
 kind: ConfigMap
 metadata:
   name: harvester-csi-driver-addon
-  namespace: 2o1fa
+  namespace: ns-2o1fa
 ---
 apiVersion: v1
 data:
@@ -599,4 +599,4 @@ data:
 kind: ConfigMap
 metadata:
   name: calico-helm-config
-  namespace: 2o1fa
+  namespace: ns-2o1fa
