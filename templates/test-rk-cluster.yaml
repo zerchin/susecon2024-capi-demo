@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ns-cs01j
+---
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
@@ -7,7 +12,7 @@ metadata:
     cni: external
     csi: external
   name: test-rk
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
@@ -22,11 +27,11 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterCluster
 metadata:
   name: test-rk-hv
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   identitySecret:
     name: hv-identity-secret
-    namespace: ns-ck1b7
+    namespace: ns-cs01j
   loadBalancerConfig:
     ipPoolRef: pool-1
     ipamType: pool
@@ -36,7 +41,7 @@ spec:
       port: 9345
       protocol: TCP
   server: https://147.28.230.3:6443
-  targetNamespace: ns-ck1b7
+  targetNamespace: ns-cs01j
 ---
 apiVersion: v1
 data:
@@ -44,13 +49,13 @@ data:
 kind: Secret
 metadata:
   name: hv-identity-secret
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 ---
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
 kind: RKE2ControlPlane
 metadata:
   name: test-rk-control-plane
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   agentConfig:
     version: v1.26.6+rke2r1
@@ -58,7 +63,7 @@ spec:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: HarvesterMachineTemplate
     name: test-rk-cp-machine
-    namespace: ns-ck1b7
+    namespace: ns-cs01j
   replicas: 3
   serverConfig:
     cloudProviderName: external
@@ -68,7 +73,7 @@ apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
 kind: RKE2ConfigTemplate
 metadata:
   name: test-rk-worker
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   template:
     spec:
@@ -79,7 +84,7 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
   name: test-rk-workers
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   clusterName: test-rk
   replicas: 2
@@ -93,20 +98,20 @@ spec:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
           kind: RKE2ConfigTemplate
           name: test-rk-worker
-          namespace: ns-ck1b7
+          namespace: ns-cs01j
       clusterName: test-rk
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
         kind: HarvesterMachineTemplate
         name: test-rk-wk-machine
-        namespace: ns-ck1b7
+        namespace: ns-cs01j
       version: v1.26.6
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-wk-machine
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   template:
     spec:
@@ -126,7 +131,7 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
   name: test-rk-cp-machine
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   template:
     spec:
@@ -146,7 +151,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-ccm
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   clusterSelector:
     matchLabels:
@@ -160,7 +165,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-harvester-csi
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   clusterSelector:
     matchLabels:
@@ -174,7 +179,7 @@ apiVersion: addons.cluster.x-k8s.io/v1beta1
 kind: ClusterResourceSet
 metadata:
   name: crs-calico-chart-config
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 spec:
   clusterSelector:
     matchLabels:
@@ -445,7 +450,7 @@ data:
 kind: ConfigMap
 metadata:
   name: cloud-controller-manager-addon
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 ---
 apiVersion: v1
 data:
@@ -563,11 +568,11 @@ data:
       namespace: kube-system
     type: Opaque
     data:
-      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFJFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEpNVTVVVlhsTmVrMHlUVUkwV0VSVVNUQk5SR3QzVGxSRk1rMUVWWHBPYkc5WVJGUk5NRTFFYTNkTmVrVXlUVVJWZWdwT2JHOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZVU1VVZURk5hazE2VG1wQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKSlEzTnFSbkpoTUV0Q1JIcDZOMjQxT0N0b1Z6UkxPWGs1UjFSamFGSjVlblkyVTBzemMwZ0tOR2h2Vm5sSlowZGxWV1pQWkhkWldHRXJXR0ZDWTNkS2EyWTRZVXB0ZURKTVNWcEdaSE5VYW13NVNqZHdNbUZxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVkRKM2RWTXphVkJsV0V4V1pqVjNUbFJTQ21JemIxb3ZaWFkwZG1wQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtoQlJFSkZRV2xDUm0xYVJHdDZSMlJRYkc5UmNFUk9SWFY1YWtwSVJtVXlOVFp4TkRRS05XdG9VVmhPTURoNmFIZE9TMmRKWjFac2VITmxiRmcxVUVWTmVUWnJkbEV6WnpOQllVMW9ablo0TTNwNU4wUXdiRGRIVVZBM1ZXSk1kM005Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ3LjI4LjIzMC4zOjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICBuYW1lc3BhY2U6IG5zLWNrMWI3CiAgICB1c2VyOiBjbG91ZC1wcm92aWRlci1ucy1jazFiNy1kZWZhdWx0CiAgbmFtZTogY2xvdWQtcHJvdmlkZXItbnMtY2sxYjctZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGNsb3VkLXByb3ZpZGVyLW5zLWNrMWI3LWRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBjbG91ZC1wcm92aWRlci1ucy1jazFiNy1kZWZhdWx0CiAgdXNlcjoKICAgIHRva2VuOiBleUpoYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWpZMWNFMXVlR2R4YkZaWlVqSkhaSGQ1UjJKelMwdFlYMWhYUkhBNU5XOVhZbnBCVEVWRVlsWktZbWNpZlEuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnVjeTFqYXpGaU55SXNJbXQxWW1WeWJtVjBaWE11YVc4dmMyVnlkbWxqWldGalkyOTFiblF2YzJWamNtVjBMbTVoYldVaU9pSmpiRzkxWkMxd2NtOTJhV1JsY2kxMGIydGxiaUlzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpqYkc5MVpDMXdjbTkyYVdSbGNpSXNJbXQxWW1WeWJtVjBaWE11YVc4dmMyVnlkbWxqWldGalkyOTFiblF2YzJWeWRtbGpaUzFoWTJOdmRXNTBMblZwWkNJNklqVXlNMk0xTVdNeUxUYzVZVEF0TkRZNU1DMWhaR1JqTFRFM09HVTVNakppT0RsaU9DSXNJbk4xWWlJNkluTjVjM1JsYlRwelpYSjJhV05sWVdOamIzVnVkRHB1Y3kxamF6RmlOenBqYkc5MVpDMXdjbTkyYVdSbGNpSjkuY2ZoWW5QbDk5LURuMFJVdjBRT2pDd3BNUlpPM2todGpfRmVYd21sSXZveFUwaXE3eFgwRVIyVW15cWViaHJybGlJUVlKN25abGpDdTI0V3VSaHhqcE9SSUVNYzlTQ0Nja1FEMVJpWXJjZlhfZ1lteEhEcHFOY1JYNXljRXpnc2VNd21CTzBVTUlORmxfTmpuOEhFLTNFRktRSFFhTWpSZW9Qd1NvSThST0VlOEtzbUVrV0d5LTl4RkdvUEwyUUgzeUQ4OG15NFNiYW0takZHcTJWRkNFLTNnaEQyLVlwQmtKeDE4dlBRb2xzc3lqUjRwSHpEZFlBX09mellFeDBUNGFOSFo1ZURONkVUV3kxSFlBTGlUSHZQN09vWF9rZ1htU3dqVmt0MlRubklNQTgxTnE4ZGZ1dVVXc3ZHWEx1eTZQMjNNajIycUg4UW9QelRHLUs3SVB3Cg==
+      cloud-config: YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIGNlcnRpZmljYXRlLWF1dGhvcml0eS1kYXRhOiBMUzB0TFMxQ1JVZEpUaUJEUlZKVVNVWkpRMEZVUlMwdExTMHRDazFKU1VKbFJFTkRRVklyWjBGM1NVSkJaMGxDUVVSQlMwSm5aM0ZvYTJwUFVGRlJSRUZxUVd0TlUwbDNTVUZaUkZaUlVVUkVRbXg1WVRKVmVVeFlUbXdLWTI1YWJHTnBNV3BaVlVGNFRucEpNVTVVVlhsTmVrMHlUVUkwV0VSVVNUQk5SR3QzVGxSRk1rMUVWWHBPYkc5WVJGUk5NRTFFYTNkTmVrVXlUVVJWZWdwT2JHOTNTa1JGYVUxRFFVZEJNVlZGUVhkM1dtTnRkR3hOYVRGNldsaEtNbHBZU1hSWk1rWkJUVlJqZVU1VVZURk5hazE2VG1wQ1drMUNUVWRDZVhGSENsTk5ORGxCWjBWSFEwTnhSMU5OTkRsQmQwVklRVEJKUVVKSlEzTnFSbkpoTUV0Q1JIcDZOMjQxT0N0b1Z6UkxPWGs1UjFSamFGSjVlblkyVTBzemMwZ0tOR2h2Vm5sSlowZGxWV1pQWkhkWldHRXJXR0ZDWTNkS2EyWTRZVXB0ZURKTVNWcEdaSE5VYW13NVNqZHdNbUZxVVdwQ1FVMUJORWRCTVZWa1JIZEZRZ292ZDFGRlFYZEpRM0JFUVZCQ1owNVdTRkpOUWtGbU9FVkNWRUZFUVZGSUwwMUNNRWRCTVZWa1JHZFJWMEpDVkRKM2RWTXphVkJsV0V4V1pqVjNUbFJTQ21JemIxb3ZaWFkwZG1wQlMwSm5aM0ZvYTJwUFVGRlJSRUZuVGtoQlJFSkZRV2xDUm0xYVJHdDZSMlJRYkc5UmNFUk9SWFY1YWtwSVJtVXlOVFp4TkRRS05XdG9VVmhPTURoNmFIZE9TMmRKWjFac2VITmxiRmcxVUVWTmVUWnJkbEV6WnpOQllVMW9ablo0TTNwNU4wUXdiRGRIVVZBM1ZXSk1kM005Q2kwdExTMHRSVTVFSUVORlVsUkpSa2xEUVZSRkxTMHRMUzBLCiAgICBzZXJ2ZXI6IGh0dHBzOi8vMTQ3LjI4LjIzMC4zOjY0NDMKICBuYW1lOiBkZWZhdWx0CmNvbnRleHRzOgotIGNvbnRleHQ6CiAgICBjbHVzdGVyOiBkZWZhdWx0CiAgICBuYW1lc3BhY2U6IG5zLWNzMDFqCiAgICB1c2VyOiBjbG91ZC1wcm92aWRlci1ucy1jczAxai1ucy1jczAxai1kZWZhdWx0CiAgbmFtZTogY2xvdWQtcHJvdmlkZXItbnMtY3MwMWotbnMtY3MwMWotZGVmYXVsdApjdXJyZW50LWNvbnRleHQ6IGNsb3VkLXByb3ZpZGVyLW5zLWNzMDFqLW5zLWNzMDFqLWRlZmF1bHQKa2luZDogQ29uZmlnCnByZWZlcmVuY2VzOiB7fQp1c2VyczoKLSBuYW1lOiBjbG91ZC1wcm92aWRlci1ucy1jczAxai1ucy1jczAxai1kZWZhdWx0CiAgdXNlcjoKICAgIHRva2VuOiBleUpoYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWpZMWNFMXVlR2R4YkZaWlVqSkhaSGQ1UjJKelMwdFlYMWhYUkhBNU5XOVhZbnBCVEVWRVlsWktZbWNpZlEuZXlKcGMzTWlPaUpyZFdKbGNtNWxkR1Z6TDNObGNuWnBZMlZoWTJOdmRXNTBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5dVlXMWxjM0JoWTJVaU9pSnVjeTFqY3pBeGFpSXNJbXQxWW1WeWJtVjBaWE11YVc4dmMyVnlkbWxqWldGalkyOTFiblF2YzJWamNtVjBMbTVoYldVaU9pSmpiRzkxWkMxd2NtOTJhV1JsY2kxdWN5MWpjekF4YWkxMGIydGxiaUlzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG01aGJXVWlPaUpqYkc5MVpDMXdjbTkyYVdSbGNpMXVjeTFqY3pBeGFpSXNJbXQxWW1WeWJtVjBaWE11YVc4dmMyVnlkbWxqWldGalkyOTFiblF2YzJWeWRtbGpaUzFoWTJOdmRXNTBMblZwWkNJNkltVmhPRGxqWVdKakxUWmtNemd0TkRKbE55MWlOamt5TFdVMFpqaGhNVEExWVdVek5DSXNJbk4xWWlJNkluTjVjM1JsYlRwelpYSjJhV05sWVdOamIzVnVkRHB1Y3kxamN6QXhhanBqYkc5MVpDMXdjbTkyYVdSbGNpMXVjeTFqY3pBeGFpSjkuWWRHOG1vcy1TWGswVFJ5NHkwYzJuVmFuc1ZRckl5NXZ5LVRnNkVHbEZJbjZzVnlaRXFuT29qV3I3Z0tBb2RHT3Zlc19NLVNLR1M1cUhLT01sUXA3UFdTTmZpRWRTZ3A3ZlIyOXBCVFkySzBJV0VtU0taQzdEUlVQYVl3UGU2d0NidFlRb2hHd3R6Y1k3NmowOXRtYlFpdkNTdVFoRThreVNPbWNVUmFrLTN0c0pXdWwwX01JVlZlRlpJRzhEWFZxWTJMZkV0bjBZTExMd0tPWUpiVEVQZkNtb2pCZ2ZJUUxwbU12Rkk0QTRQcUo3cmRMMExpZVYzbGYxWmRORDhzTlFGQzNyUXhmR1dyNm5DUmxPMlNEUnViRjI3RzI2anhZQm5IdjFqcXg1STBuQXpUVHRiX09PbWVJc1VvWDRUSElYUFJ0eld4X25Ia3JmUmZLSk94OHZRCg==
 kind: ConfigMap
 metadata:
   name: harvester-csi-driver-addon
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
 ---
 apiVersion: v1
 data:
@@ -594,4 +599,4 @@ data:
 kind: ConfigMap
 metadata:
   name: calico-helm-config
-  namespace: ns-ck1b7
+  namespace: ns-cs01j
