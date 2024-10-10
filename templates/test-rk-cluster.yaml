@@ -6,22 +6,22 @@ metadata:
     cluster-api.cattle.io/rancher-auto-import: "true"
     cni: external
     csi: external
-  name: test-rk
+  name: zz
   namespace: ns-km17y
 spec:
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
     kind: RKE2ControlPlane
-    name: test-rk-control-plane
+    name: zz-control-plane
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: HarvesterCluster
-    name: test-rk-hv
+    name: zz-hv
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterCluster
 metadata:
-  name: test-rk-hv
+  name: zz-hv
   namespace: ns-km17y
 spec:
   identitySecret:
@@ -49,7 +49,7 @@ metadata:
 apiVersion: controlplane.cluster.x-k8s.io/v1alpha1
 kind: RKE2ControlPlane
 metadata:
-  name: test-rk-control-plane
+  name: zz-control-plane
   namespace: ns-km17y
 spec:
   agentConfig:
@@ -57,7 +57,7 @@ spec:
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: HarvesterMachineTemplate
-    name: test-rk-cp-machine
+    name: zz-cp-machine
     namespace: ns-km17y
   replicas: 3
   serverConfig:
@@ -67,7 +67,7 @@ spec:
 apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
 kind: RKE2ConfigTemplate
 metadata:
-  name: test-rk-worker
+  name: zz-worker
   namespace: ns-km17y
 spec:
   template:
@@ -78,34 +78,34 @@ spec:
 apiVersion: cluster.x-k8s.io/v1beta1
 kind: MachineDeployment
 metadata:
-  name: test-rk-workers
+  name: zz-workers
   namespace: ns-km17y
 spec:
-  clusterName: test-rk
+  clusterName: zz
   replicas: 2
   selector:
     matchLabels:
-      cluster.x-k8s.io/cluster-name: test-rk
+      cluster.x-k8s.io/cluster-name: zz
   template:
     spec:
       bootstrap:
         configRef:
           apiVersion: bootstrap.cluster.x-k8s.io/v1alpha1
           kind: RKE2ConfigTemplate
-          name: test-rk-worker
+          name: zz-worker
           namespace: ns-km17y
-      clusterName: test-rk
+      clusterName: zz
       infrastructureRef:
         apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
         kind: HarvesterMachineTemplate
-        name: test-rk-wk-machine
+        name: zz-wk-machine
         namespace: ns-km17y
       version: v1.26.6
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
-  name: test-rk-wk-machine
+  name: zz-wk-machine
   namespace: ns-km17y
 spec:
   template:
@@ -125,7 +125,7 @@ spec:
 apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: HarvesterMachineTemplate
 metadata:
-  name: test-rk-cp-machine
+  name: zz-cp-machine
   namespace: ns-km17y
 spec:
   template:
